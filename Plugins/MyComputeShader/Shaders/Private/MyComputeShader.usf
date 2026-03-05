@@ -1,0 +1,28 @@
+﻿// ========================================
+// MyComputeShader.usf
+// ========================================
+// THREADS_X 和 THREADS_Y 由 C++ 端的 ModifyCompilationEnvironment 定义
+
+#include "/Engine/Public/Platform.ush"
+
+// 参数：必须和 C++ 的 BEGIN_SHADER_PARAMETER_STRUCT 中的名字完全一致
+RWTexture2D<float4> OutputTexture;
+float4 FillColor;
+int2 TextureSize;
+
+[numthreads(THREADS_X, THREADS_Y, 1)]
+void MainCS(
+	uint3 DispatchThreadId : SV_DispatchThreadID,
+	uint3 GroupThreadId    : SV_GroupThreadID,
+	uint3 GroupId          : SV_GroupID)
+{
+	// 边界检查：超出纹理范围的线程直接返回
+	if (DispatchThreadId.x >= (uint)TextureSize.x ||
+		DispatchThreadId.y >= (uint)TextureSize.y)
+	{
+		return;
+	}
+
+	// 写入颜色到输出纹理
+	OutputTexture[DispatchThreadId.xy] = FillColor;
+}

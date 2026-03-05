@@ -511,6 +511,8 @@ void UMyCSBlueprintLibrary::FillRenderTarget(
 7. 创建一个材质，用 `TextureSampleParameter2D` 采样 `RT_Test`
 8. 将材质应用到场景中的一个平面上
 9. 运行，平面应该显示为你指定的颜色
+<img width="1435" height="984" alt="image" src="https://github.com/user-attachments/assets/24a1d50d-cdba-4b13-b654-348133d4bb7d" />
+<img width="1435" height="984" alt="image" src="https://github.com/user-attachments/assets/24a1d50d-cdba-4b13-b654-348133d4bb7d" />
 
 ---
 
